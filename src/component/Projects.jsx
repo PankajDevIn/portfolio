@@ -50,24 +50,26 @@ const Projects = () => {
                   className="w-full h-full border-0 pointer-events-none"
                 />
               </div> */}
-              <div className="w-full h-40">
+         <div className="w-full h-40 relative">
   {project.video ? (
- <video
+    <video
       src={project.video}
       title={project.title}
       controls
-       className="w-full h-full object-cover relative z-50"
-
+      className="w-full h-full object-cover relative z-10"
     />
-
   ) : (
     <iframe
       src={project.link}
       title={project.title}
-      className="w-full h-full border-0 pointer-events-none"
+      className="w-full h-full border-0 pointer-events-none relative z-10"
     />
   )}
+
+  {/* Overlay gradient */}
+  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 pointer-events-none z-0" />
 </div>
+
 
 
               {/* Overlay gradient */}
