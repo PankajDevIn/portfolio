@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const projects = [
   {
@@ -65,14 +66,12 @@ const Projects = () => {
                 <p className="text-sm text-slate-300 mb-3">{project.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-slate-400">React • Tailwind • Framer Motion</span>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                  to={project.link}
                     className="p-2 bg-white/10 rounded-full hover:bg-white/20 backdrop-blur-sm transition-colors"
                   >
                     <ExternalLink size={16} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
