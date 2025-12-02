@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import { title } from 'framer-motion/client';
 
 const projects = [
   {
@@ -19,7 +20,15 @@ const projects = [
     title: "Portfolio Showcase",
     description: "Interactive portfolio project highlighting featured work and demos.",
     link: "/agency-dashboard-demo"
+  },
+   {
+    id: 4,
+    title: "Edited Video Showcase",
+    description: "A creative edited video project demonstrating motion graphics and storytelling.",
+    video: "/assets/editedvid.mp4" // replace with your video link
   }
+
+  
 ];
 
 const Projects = () => {
@@ -34,13 +43,31 @@ const Projects = () => {
               className="group relative rounded-xl overflow-hidden border border-slate-800 bg-slate-900 shadow-lg hover:shadow-xl transition-shadow"
             >
               {/* Live preview iframe for all projects */}
-              <div className="w-full h-40">
+              {/* <div className="w-full h-40">
                 <iframe
                   src={project.link}
                   title={project.title}
                   className="w-full h-full border-0 pointer-events-none"
                 />
-              </div>
+              </div> */}
+              <div className="w-full h-40">
+  {project.video ? (
+    <video
+      src={project.video}
+      title={project.title}
+      controls
+      className="w-full h-full object-cover"
+    />
+
+  ) : (
+    <iframe
+      src={project.link}
+      title={project.title}
+      className="w-full h-full border-0 pointer-events-none"
+    />
+  )}
+</div>
+
 
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10" />
