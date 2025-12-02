@@ -57,7 +57,7 @@ const Projects = () => {
                   />
                 )}
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 pointer-events-none z-0" />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent opacity-80 pointer-events-none z-0" />
               </div>
 
               {/* Card content */}
