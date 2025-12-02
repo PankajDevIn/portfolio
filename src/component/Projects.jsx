@@ -56,7 +56,8 @@ const Projects = () => {
       src={project.video}
       title={project.title}
       controls
-      className="w-full h-full object-cover"
+       className="w-full h-full object-cover relative z-50"
+
     />
 
   ) : (
