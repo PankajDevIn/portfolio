@@ -52,7 +52,7 @@ const Projects = () => {
               </div> */}
               <div className="w-full h-40">
   {project.video ? (
-    <video
+ <video
       src={project.video}
       title={project.title}
       controls
