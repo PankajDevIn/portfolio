@@ -56,13 +56,13 @@ const Projects = () => {
       src={project.video}
       title={project.title}
       controls
-      className="w-full h-full object-cover relative z-10"
+      className="w-full h-full object-cover relative z-50"
     />
   ) : (
     <iframe
       src={project.link}
       title={project.title}
-      className="w-full h-full border-0 pointer-events-none relative z-10"
+      className="w-full h-full border-0 pointer-events-none relative z-50"
     />
   )}
 
