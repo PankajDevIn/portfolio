@@ -1,6 +1,5 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
-import { title } from 'framer-motion/client';
 
 const projects = [
   {
@@ -21,14 +20,12 @@ const projects = [
     description: "Interactive portfolio project highlighting featured work and demos.",
     link: "/agency-dashboard-demo"
   },
-   {
+  {
     id: 4,
     title: "Edited Video Showcase",
     description: "A creative edited video project demonstrating motion graphics and storytelling.",
     video: "/assets/editedvid.mp4" // replace with your video link
   }
-
-  
 ];
 
 const Projects = () => {
@@ -42,38 +39,25 @@ const Projects = () => {
               key={project.id}
               className="group relative rounded-xl overflow-hidden border border-slate-800 bg-slate-900 shadow-lg hover:shadow-xl transition-shadow"
             >
-              {/* Live preview iframe for all projects */}
-              {/* <div className="w-full h-40">
-                <iframe
-                  src={project.link}
-                  title={project.title}
-                  className="w-full h-full border-0 pointer-events-none"
-                />
-              </div> */}
-             <div className="w-full h-40 relative">
-  {project.video ? (
-    <video
-      src={project.video}
-      title={project.title}
-      controls
-      className="w-full h-full object-cover relative z-10"
-    />
-  ) : (
-    <iframe
-      src={project.link}
-      title={project.title}
-      className="w-full h-full border-0 pointer-events-none relative z-10"
-    />
-  )}
-
-  {/* Overlay gradient */}
-  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 pointer-events-none z-0" />
-</div>
-
-
-
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10" />
+              {/* Preview block */}
+              <div className="w-full h-40 relative">
+                {project.video ? (
+                  <video
+                    src={project.video}
+                    title={project.title}
+                    controls
+                    className="w-full h-full object-cover relative z-10"
+                  />
+                ) : (
+                  <iframe
+                    src={project.link}
+                    title={project.title}
+                    className="w-full h-full border-0 pointer-events-none relative z-10"
+                  />
+                )}
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 pointer-events-none z-0" />
+              </div>
 
               {/* Card content */}
               <div className="p-5 relative z-20">
