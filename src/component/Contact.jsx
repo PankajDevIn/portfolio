@@ -3,13 +3,31 @@ import React, { useState } from 'react';
 const Contact = () => {
   const [formStatus, setFormStatus] = useState('idle');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('sending');
-    setTimeout(() => {
-      setFormStatus('success');
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }, 1500);
+
+    const formData = new FormData(e.target);
+    formData.append("access_key", "88ab7ac3-e6ea-428c-8fd5-7917a0ed78b3"); // Replace with your Web3Forms key
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setFormStatus('success');
+        setTimeout(() => setFormStatus('idle'), 3000);
+      } else {
+        setFormStatus('idle');
+        alert("Something went wrong: " + result.message);
+      }
+    } catch (error) {
+      console.error(error);
+      setFormStatus('idle');
+    }
   };
 
   return (
@@ -25,27 +43,17 @@ const Contact = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-slate-400 mb-2">Name</label>
-                <input 
-                  type="text" 
-                  required
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                  placeholder="John Doe" 
-                />
+                <input type="text" name="name" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white" placeholder="John Doe" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-400 mb-2">Email</label>
-                <input 
-                  type="email" 
-                  required
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                  placeholder="john@example.com" 
-                />
+                <input type="email" name="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white" placeholder="john@example.com" />
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-slate-400 mb-2">Service Interest</label>
-              <select className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
+              <select name="service" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white">
                 <option>Full Stack Development</option>
                 <option>AI Website Generation</option>
                 <option>App Development</option>
@@ -56,23 +64,12 @@ const Contact = () => {
 
             <div>
               <label className="block text-sm font-medium text-slate-400 mb-2">Message</label>
-              <textarea 
-                rows="4" 
-                required
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                placeholder="Tell me about your project..."
-              ></textarea>
+              <textarea name="message" rows="4" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white" placeholder="Tell me about your project..."></textarea>
             </div>
 
-            <button 
-              type="submit"
-              disabled={formStatus === 'sending' || formStatus === 'success'}
-              className={`w-full py-4 rounded-lg font-bold text-white transition-all transform hover:scale-[1.01] ${
-                formStatus === 'success' 
-                  ? 'bg-green-600' 
-                  : 'bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
-              }`}
-            >
+            <button type="submit" disabled={formStatus === 'sending' || formStatus === 'success'} className={`w-full py-4 rounded-lg font-bold text-white transition-all transform hover:scale-[1.01] ${
+              formStatus === 'success' ? 'bg-green-600' : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+            }`}>
               {formStatus === 'idle' && 'Send Message'}
               {formStatus === 'sending' && 'Sending...'}
               {formStatus === 'success' && 'Message Sent!'}
